@@ -54,6 +54,24 @@ $user = $em->find('MyProject\Domain\User', $id);
 
 $user = $em->getRepository('MyProject\Domain\User')->find($id);
 ```
+
+3.1.3 The `EntityManager#getRepository()` method can create a finder object (**called a repository**) for every type of entity. It is provided by Doctrine and contains some finder methods like `findAll()`:
+
+```php
+<?php
+
+// list_products.php
+require_once "bootstrap.php";
+
+$productRepository = $entityManager->getRepository('Product');
+$products = $productRepository->findAll();
+
+foreach ($products as $product) {
+    echo sprintf("-%s\n", $product->getName());
+}
+
+```
+
 ## `3.2 By simple condition`
 3.2.1 To query for one or more entities based on several conditions that form a logical conjunction, use the `findBy` and `findOneBy` methods on a repository as follows:
 
