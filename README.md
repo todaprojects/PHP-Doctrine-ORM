@@ -1,10 +1,10 @@
 # PHP Doctrine ORM 
-# A summary of working with objects
+## A summary of working with objects
 
 https://www.doctrine-project.org/projects/doctrine-orm/en/2.7/reference/working-with-objects.html
 
 
-# 1. Persisting entities (`INSERT` object/entity)
+## 1. Persisting entities (**`INSERT`** object/entity)
 
 ```php
 <?php
@@ -19,7 +19,7 @@ $em->flush();
 
 ```
 
-# 2. Removing entities (`DELETE` object/entity)
+## 2. Removing entities (**`DELETE`** object/entity)
 
 ```php
 <?php
@@ -31,11 +31,11 @@ $em->flush();
 
 ```
 
-# 3. Querying (`SELECT` object/entity)
+## 3. Querying (**`SELECT`** object/entity)
 
-## `3.1 By primary key`
+### **`3.1 By primary key`**
 
-3.1.1 The most basic way to query for a persistent object is by its identifier / primary key using the `EntityManager#find($entityName, $id)` method:
+> 3.1.1 The most basic way to query for a persistent object is by its identifier / primary key using the **`EntityManager#find($entityName, $id)`** method:
 ```php
 <?php
 
@@ -45,7 +45,7 @@ $user = $em->find('MyProject\Domain\User', $id);
 
 ```
 
-3.1.2 Essentially, `EntityManager#find()` is just a shortcut for the following:
+> 3.1.2 Essentially, **`EntityManager#find()`** is just a shortcut for the following:
 
 ```php
 <?php
@@ -55,7 +55,7 @@ $user = $em->find('MyProject\Domain\User', $id);
 $user = $em->getRepository('MyProject\Domain\User')->find($id);
 ```
 
-3.1.3 The `EntityManager#getRepository()` method can create a finder object (**called a repository**) for every type of entity. It is provided by Doctrine and contains some finder methods like `findAll()`:
+> 3.1.3 The **`EntityManager#getRepository()`** method can create a finder object (**called a repository**) for every type of entity. It is provided by Doctrine and contains some finder methods like **`findAll()`**:
 
 ```php
 <?php
@@ -72,8 +72,8 @@ foreach ($products as $product) {
 
 ```
 
-## `3.2 By simple condition`
-3.2.1 To query for one or more entities based on several conditions that form a logical conjunction, use the `findBy` and `findOneBy` methods on a repository as follows:
+### **`3.2 By simple condition`**
+> 3.2.1 To query for one or more entities based on several conditions that form a logical conjunction, use the **`findBy`** and **`findOneBy`** methods on a repository as follows:
 
 ```php
 <?php
@@ -91,7 +91,7 @@ $user = $em->getRepository('MyProject\Domain\User')->findOneBy(array('nickname' 
 
 ```
 
-3.2.2 You can also load by owning side associations through the repository:
+> 3.2.2 You can also load by owning side associations through the repository:
 
 ```php
 <?php
@@ -102,7 +102,7 @@ $user = $em->getRepository('MyProject\Domain\User')->findOneBy(array('phone' => 
 
 ```
 
-3.2.3 The `EntityRepository#findBy()` method additionally accepts orderings, limit and offset as second to fourth parameters:
+> 3.2.3 The **`EntityRepository#findBy()`** method additionally accepts orderings, limit and offset as second to fourth parameters:
 
 ```php
 <?php
@@ -111,7 +111,7 @@ $tenUsers = $em->getRepository('MyProject\Domain\User')->findBy(array('age' => 2
 
 ```
 
-3.2.4 If you pass an array of values Doctrine will convert the query into a `WHERE field IN (..)` query automatically:
+> 3.2.4 If you pass an array of values Doctrine will convert the query into a **`WHERE field IN (..)`** query automatically:
 
 ```php
 <?php
@@ -122,7 +122,7 @@ $users = $em->getRepository('MyProject\Domain\User')->findBy(array('age' => arra
 
 ```
 
-3.2.5 An EntityRepository also provides a mechanism for more concise calls through its use of `__call`. Thus, the following two examples are equivalent:
+> 3.2.5 An EntityRepository also provides a mechanism for more concise calls through its use of **`__call`**. Thus, the following two examples are equivalent:
 
 ```php
 <?php
@@ -135,7 +135,7 @@ $user = $em->getRepository('MyProject\Domain\User')->findOneByNickname('romanb')
 
 ```
 
-3.2.6 Additionally, you can just count the result of the provided conditions when you don't really need the data:
+> 3.2.6 Additionally, you can just count the result of the provided conditions when you don't really need the data:
 
 ```php
 <?php
